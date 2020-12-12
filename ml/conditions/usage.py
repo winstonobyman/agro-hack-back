@@ -65,10 +65,10 @@ def optimal_values():
     dict_to_js = {'data':[]
          }
         
-    labels = ['currentTemperature:', 'currentLightingLevel:', 
-        'currentSoilMoisture:', 'currentSoilAcidity:', 
-        'optimalTemperature:', 'optimalLightingLevel:', 
-        'optimalSoilMoisture:', 'optimalSoilAcidity:'
+    labels = ['currentTemperature', 'currentLightingLevel', 
+        'currentSoilMoisture', 'currentSoilAcidity', 
+        'optimalTemperature', 'optimalLightingLevel', 
+        'optimalSoilMoisture', 'optimalSoilAcidity'
     ]
     
     for i in range(1,5):
