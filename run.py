@@ -6,6 +6,9 @@ from anomly_detection import TIME_STEPS, check_last_anomaly
 
 
 
+from ml.conditions import usage
+
+
 app = FastAPI()
 
 SENSOR_PATH = os.path.join('data', 'sensor_data.csv')
@@ -25,3 +28,8 @@ def get_greenhouse_plot_data(grh_num=1):
 @app.get('/anom')
 def get_anomaly():
     return check_last_anomaly()
+
+
+# @app.get('/getoptimaldata')
+# def get_optimal_data():
+#     return usage.optimal_values()

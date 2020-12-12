@@ -1,5 +1,4 @@
-import tensorflow
-import keras
+from tensorflow import keras
 import numpy as np
 import pickle
 import os
@@ -15,10 +14,10 @@ threshold_path = os.path.join('ml', 'anomaly', 'THRESHOLD.txt')
 with open(threshold_path) as f:
     THRESHOLD = float(f.read().strip())
 
-model_path = os.path.join('ml', 'anomaly', 'model_lstm')
-model_lstm = keras.models.load_model(model_path)
+# model_path = os.path.join('ml', 'anomaly', 'model_lstm.h5')
+model_lstm = keras.models.load_model('ml/anomaly/model_lstm.h5', compile=False)
 
-SENSOR_PATH = os.path.join('data', 'sensor_data.csv')
+SENSOR_PATH = os.path.join('data/sensor_data.csv')
 SENSOR_DATA = get_sensor_data(SENSOR_PATH, ascending=True)
 
 

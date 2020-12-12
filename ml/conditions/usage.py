@@ -3,7 +3,8 @@ import pandas as pd
 from catboost import CatBoostRegressor
 import json
 
-sensors = pd.read_csv('C:/Users/Admin/Desktop/hackathon/agro-hack-back/data/sensor_data.csv')
+sensors = pd.read_csv('../../data/sensor_data.csv')
+
 sensors.index = sensors.index[::-1]
 sensors.sort_index(inplace=True)
 
@@ -30,14 +31,14 @@ def ranked_preds(d):
     moist = pd.DataFrame({'key':key, 'm_range':m_range})
     ill = pd.DataFrame({'key':key, 'il_range':il_range})
 
-    # Castesian product 
+    # Castesian product
     df = pd.merge(temp, moist, on='key')
     df = pd.merge(df, ill, on='key')
 
     data['key'] = 1
     p = data.iloc[:,[3,4]]
     predicted_params = pd.merge(df, p, on='key')
-        
+
     predicted_params.drop(columns='key', inplace=True)
     #predicted_params = predicted_params.iloc[:,[3,0,1,2,4]]
 
@@ -58,26 +59,22 @@ def get_optimal(data):
     optimal = after - before
     return optimal
 
-def json_objects():
+def optimal_values():
     g = globals()
     dict_to_js = {'data':[]
          }
-        
-    labels = ['currentTemperature:', 'currentLightingLevel:', 
-        'currentSoilMoisture:', 'currentSoilAcidity:', 
-        'optimalTemperature:', 'optimalLightingLevel:', 
+
+    labels = ['currentTemperature:', 'currentLightingLevel:',
+        'currentSoilMoisture:', 'currentSoilAcidity:',
+        'optimalTemperature:', 'optimalLightingLevel:',
         'optimalSoilMoisture:', 'optimalSoilAcidity:'
     ]
-    
+
     for i in range(1,5):
         g['g{0}'.format(i)] = get_optimal(g['p{0}'.format(i)])
         g['ex_{0}'.format(i)] = g['p{0}'.format(i)].drop(columns='key').values.tolist()[0] + list(g['g{0}'.format(i)][0])
 
-        d = dict(zip(labels,g['ex{0}'.format(i)]))
-        dict_to_js['data'].append(d) 
-        
+        d = dict(zip(labels,g['ex_{0}'.format(i)]))
+        dict_to_js['data'].append(d)
+
     return dict_to_js
-
-
-
-

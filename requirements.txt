@@ -5,3 +5,7 @@ pandas
 tensorflow
 sklearn
 keras
+seaborn
+matplotlib
+catboost
+json
