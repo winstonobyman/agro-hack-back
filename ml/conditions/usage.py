@@ -1,24 +1,25 @@
 import numpy as np
 import pandas as pd
 from catboost import CatBoostRegressor
+import utils
 import json
 
-sensors = pd.read_csv('../../data/sensor_data.csv')
+sensors = pd.read_csv('data/sensor_data.csv')
 
 sensors.index = sensors.index[::-1]
 sensors.sort_index(inplace=True)
 
 model = CatBoostRegressor()
-model = model.load_model("predictions")
+model = model.load_model("ml/conditions/predictions")
 
 #sensors
 
 # fake data just for debugging
-p1 = sensors.iloc[:,[2,3,4,5]][405:406]
-p2 = sensors.iloc[:,[2,6,7,8]][306:307]
-p3 = sensors.iloc[:,[2,9,10,11]][546:547]
-p4 = sensors.iloc[:,[2,12,13,14]][783:784]
-p5 = sensors.iloc[:,[2,15,16,17]][1758:1759]
+p1 = sensors.iloc[:,[2,3,4,5]][405:406].fillna(0)
+p2 = sensors.iloc[:,[2,6,7,8]][306:307].fillna(0)
+p3 = sensors.iloc[:,[2,9,10,11]][546:547].fillna(0)
+p4 = sensors.iloc[:,[2,12,13,14]][783:784].fillna(0)
+p5 = sensors.iloc[:,[2,15,16,17]][1758:1759].fillna(0)
 
 def ranked_preds(d):
     data = d
