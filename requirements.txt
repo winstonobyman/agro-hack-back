@@ -6,3 +6,5 @@ sklearn
 keras
 seaborn
 matplotlib
+catboost
+json 
