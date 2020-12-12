@@ -39,6 +39,6 @@ def get_anomaly():
     return {'last_temp_anomaly': 'True' if check_last_anomaly() else False}
 
 
-# @app.get('/getoptimaldata')
-# def get_optimal_data():
-#     return usage.optimal_values()
+@app.get('/getoptimaldata')
+def get_optimal_data():
+    return usage.optimal_values()
