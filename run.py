@@ -2,6 +2,9 @@ from fastapi import FastAPI
 import os
 # from typing import Optional
 from utils import get_weekly_field, get_sensor_data, get_dates_from_series
+from anomly_detection import TIME_STEPS, check_last_anomaly
+
+
 
 from ml.conditions import usage
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,11 +30,15 @@ def get_greenhouse_plot_data(grh_num=1):
         'temperatures': list(air_temperatures.values),
         'lightningLevels': list(get_weekly_field(SENSOR_DATA, 'illumination_p' + str(grh_num)).values),
         'soilMoisture': list(get_weekly_field(SENSOR_DATA, 'relative_soil_mosture_p' + str(grh_num)).values),
-        'soilAcidity': list(get_weekly_field(SENSOR_DATA, 'relative_soil_mosture_p' + str(grh_num)).values),
+        'soilAcidity': list(get_weekly_field(SENSOR_DATA, 'soil_acidity_p' + str(grh_num)).values),
         'date': list(get_dates_from_series(air_temperatures))
     }
 
-@app.get('/getoptimaldata')
-def get_optimal_data():
-    return usage.optimal_values()
+@app.get('/anom')
+def get_anomaly():
+    return check_last_anomaly()
 
+
+# @app.get('/getoptimaldata')
+# def get_optimal_data():
+#     return usage.optimal_values()

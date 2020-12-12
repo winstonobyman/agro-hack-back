@@ -1,10 +1,11 @@
+fastapi
 hdbscan
 numpy
 pandas
 tensorflow
-sklearn
+scikitlearn==0.22.0
 keras
 seaborn
 matplotlib
 catboost
-json 
+json
