@@ -3,7 +3,8 @@ import pandas as pd
 from catboost import CatBoostRegressor
 import json
 
-sensors = pd.read_csv('C:/Users/Admin/Desktop/hackathon/agro-hack-back/data/sensor_data.csv')
+sensors = pd.read_csv('../../data/sensor_data.csv')
+
 sensors.index = sensors.index[::-1]
 sensors.sort_index(inplace=True)
 
@@ -73,11 +74,10 @@ def json_objects():
         g['g{0}'.format(i)] = get_optimal(g['p{0}'.format(i)])
         g['ex_{0}'.format(i)] = g['p{0}'.format(i)].drop(columns='key').values.tolist()[0] + list(g['g{0}'.format(i)][0])
 
-        d = dict(zip(labels,g['ex{0}'.format(i)]))
+        d = dict(zip(labels,g['ex_{0}'.format(i)]))
         dict_to_js['data'].append(d) 
         
     return dict_to_js
-
 
 
 
