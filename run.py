@@ -2,8 +2,10 @@ from fastapi import FastAPI
 import os
 # from typing import Optional
 from utils import get_weekly_field, get_sensor_data, get_dates_from_series
+
 from ml.conditions import usage
 from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
@@ -32,3 +34,4 @@ def get_greenhouse_plot_data(grh_num=1):
 @app.get('/getoptimaldata')
 def get_optimal_data():
     return usage.optimal_values()
+
