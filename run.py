@@ -36,7 +36,7 @@ def get_greenhouse_plot_data(grh_num=1):
 
 @app.get('/anom')
 def get_anomaly():
-    return check_last_anomaly()
+    return {'last_temp_anomaly': 'True' if check_last_anomaly() else False}
 
 
 # @app.get('/getoptimaldata')
