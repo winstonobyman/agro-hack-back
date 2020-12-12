@@ -21,7 +21,7 @@ def get_greenhouse_plot_data(grh_num=1):
         'temperatures': list(air_temperatures.values),
         'lightningLevels': list(get_weekly_field(SENSOR_DATA, 'illumination_p' + str(grh_num)).values),
         'soilMoisture': list(get_weekly_field(SENSOR_DATA, 'relative_soil_mosture_p' + str(grh_num)).values),
-        'soilAcidity': list(get_weekly_field(SENSOR_DATA, 'relative_soil_mosture_p' + str(grh_num)).values),
+        'soilAcidity': list(get_weekly_field(SENSOR_DATA, 'soil_acidity_p' + str(grh_num)).values),
         'date': list(get_dates_from_series(air_temperatures))
     }
 

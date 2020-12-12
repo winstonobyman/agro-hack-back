@@ -14,8 +14,8 @@ threshold_path = os.path.join('ml', 'anomaly', 'THRESHOLD.txt')
 with open(threshold_path) as f:
     THRESHOLD = float(f.read().strip())
 
-# model_path = os.path.join('ml', 'anomaly', 'model_lstm.h5')
-model_lstm = keras.models.load_model('ml/anomaly/model_lstm.h5', compile=False)
+model_path = os.path.join('ml', 'anomaly', 'model_lstm.h5')
+model_lstm = keras.models.load_model(model_path, compile=False)
 
 SENSOR_PATH = os.path.join('data/sensor_data.csv')
 SENSOR_DATA = get_sensor_data(SENSOR_PATH, ascending=True)
@@ -23,7 +23,7 @@ SENSOR_DATA = get_sensor_data(SENSOR_PATH, ascending=True)
 
 def check_last_anomaly():
     data_to_predict = check_anomalies(SENSOR_DATA['air_temperature'][-TIME_STEPS:])
-    check_anomalies(data_to_predict)[-1]
+    return data_to_predict.flatten()[-1]
 
 
 def transform_to_predict_input(data, scaler=scaler_lstm, TIME_STEPS=TIME_STEPS):
