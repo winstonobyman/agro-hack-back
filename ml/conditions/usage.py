@@ -59,7 +59,7 @@ def get_optimal(data):
     optimal = after - before
     return optimal
 
-def json_objects():
+def optimal_values():
     g = globals()
     dict_to_js = {'data':[]
          }
