@@ -68,7 +68,7 @@ def optimal_values():
     labels = ['currentTemperature', 'currentLightingLevel', 
         'currentSoilMoisture', 'currentSoilAcidity', 
         'optimalTemperature', 'optimalLightingLevel', 
-        'optimalSoilMoisture', 'optimalSoilAcidity'
+        'optimalSoilMoisture', 'optimalSoilAcidity']
 
     for i in range(1,5):
         g['g{0}'.format(i)] = get_optimal(g['p{0}'.format(i)])
