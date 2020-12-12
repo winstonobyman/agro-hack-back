@@ -18,3 +18,10 @@ def get_greenhouse_plot_data(grh_num=1):
         'soilAcidity': list(get_weekly_field(SENSOR_DATA, 'relative_soil_mosture_p' + str(grh_num)).values),
         'date': list(get_dates_from_series(air_temperatures))
     }
+
+
+@app.get('/currentState')
+def get_current_state():
+    return {
+
+    }
