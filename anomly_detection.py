@@ -6,7 +6,8 @@ import os
 from utils import get_sensor_data
 
 scaler_path = os.path.join('ml', 'anomaly', 'scaler_lstm.pkl')
-scaler_lstm = pickle.load(scaler_path)
+with open(scaler_path, 'rb') as f:
+    scaler_lstm = pickle.load(f)
 
 TIME_STEPS = 30
 

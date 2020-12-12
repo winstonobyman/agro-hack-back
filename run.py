@@ -2,6 +2,9 @@ from fastapi import FastAPI
 import os
 # from typing import Optional
 from utils import get_weekly_field, get_sensor_data, get_dates_from_series
+from anomly_detection import TIME_STEPS, check_last_anomaly
+
+
 
 app = FastAPI()
 
@@ -19,9 +22,6 @@ def get_greenhouse_plot_data(grh_num=1):
         'date': list(get_dates_from_series(air_temperatures))
     }
 
-
-@app.get('/currentState')
-def get_current_state():
-    return {
-
-    }
+@app.get('/anom')
+def get_anomaly():
+    return check_last_anomaly()
