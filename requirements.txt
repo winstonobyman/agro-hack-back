@@ -1,0 +1,8 @@
+hdbscan
+numpy
+pandas
+tensorflow
+sklearn
+keras
+seaborn
+matplotlib
