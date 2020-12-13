@@ -34,11 +34,12 @@ def get_greenhouse_plot_data(grh_num=1):
         'date': list(get_dates_from_series(air_temperatures))
     }
 
-@app.get('/anom')
+@app.get('/anom/')
 def get_anomaly():
-    return {'last_temp_anomaly': 'True' if check_last_anomaly() else False}
+    return {'last_temp_anomaly': True if check_last_anomaly() else False}
 
 
 @app.get('/getoptimaldata')
 def get_optimal_data():
-    return usage.optimal_values()
+    result = usage.optimal_values()
+    return result
