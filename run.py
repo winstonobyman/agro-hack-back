@@ -3,12 +3,8 @@ import os
 # from typing import Optional
 from utils import get_weekly_field, get_sensor_data, get_dates_from_series
 from anomly_detection import TIME_STEPS, check_last_anomaly
-
-
-
 from ml.conditions import usage
 from fastapi.middleware.cors import CORSMiddleware
-
 
 app = FastAPI()
 

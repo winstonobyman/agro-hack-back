@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from catboost import CatBoostRegressor
-import utils
 import json
 
 sensors = pd.read_csv('data/sensor_data.csv')
@@ -70,7 +69,7 @@ def optimal_values():
         'optimalTemperature', 'optimalLightingLevel', 
         'optimalSoilMoisture', 'optimalSoilAcidity']
 
-    for i in range(1,5):
+    for i in range(1,6):
         g['g{0}'.format(i)] = get_optimal(g['p{0}'.format(i)])
         g['ex_{0}'.format(i)] = g['p{0}'.format(i)].drop(columns='key').values.tolist()[0] + list(g['g{0}'.format(i)][0])
 
