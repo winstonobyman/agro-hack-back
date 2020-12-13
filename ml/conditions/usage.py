@@ -20,11 +20,13 @@ p3 = sensors.iloc[:,[2,9,10,11]][546:547].fillna(0)
 p4 = sensors.iloc[:,[2,12,13,14]][783:784].fillna(0)
 p5 = sensors.iloc[:,[2,15,16,17]][1758:1759].fillna(0)
 
+illumination_sensor = sensors.illumination_p1.mean()//2 + sensors.illumination_p1.min()
+
 def ranked_preds(d):
     data = d
     t_range = np.linspace(sensors.air_temperature.min(), sensors.air_temperature.max(), num = 10)
     m_range = np.linspace(sensors.relative_soil_mosture_p1.min(), sensors.relative_soil_mosture_p1.max(), num = 10)
-    il_range = np.linspace(sensors.illumination_p1.min(), sensors.illumination_p1.max(), num = 10)
+    il_range = np.linspace(illumination_sensor, sensors.illumination_p1.max(), num = 10)
     key = np.array([1]*10)
 
     temp = pd.DataFrame({'key':key, 't_range':t_range})
@@ -64,10 +66,10 @@ def optimal_values():
     dict_to_js = {'data':[]
          }
        
-    labels = ['currentTemperature', 'currentLightingLevel', 
-        'currentSoilMoisture', 'currentSoilAcidity', 
-        'optimalTemperature', 'optimalLightingLevel', 
-        'optimalSoilMoisture', 'optimalSoilAcidity']
+    labels = ['currentTemperature', 'currentSoilMoisture',
+        'currentLightingLevel', 'currentSoilAcidity', 
+        'optimalTemperature', 'optimalSoilMoisture', 
+        'optimalLightingLevel', 'optimalSoilAcidity']
 
     for i in range(1,6):
         g['g{0}'.format(i)] = get_optimal(g['p{0}'.format(i)])
