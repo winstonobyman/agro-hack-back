@@ -2,13 +2,9 @@ from fastapi import FastAPI
 import os
 # from typing import Optional
 from utils import get_weekly_field, get_sensor_data, get_dates_from_series
-from anomly_detection import TIME_STEPS, check_last_anomaly
-
-
-
+from anomly_detection import TIME_STEPS, check_last_anomaly, add_anomaly_to_dict
 from ml.conditions import usage
 from fastapi.middleware.cors import CORSMiddleware
-
 
 app = FastAPI()
 
@@ -42,4 +38,5 @@ def get_anomaly():
 @app.get('/getoptimaldata')
 def get_optimal_data():
     result = usage.optimal_values()
+    result = add_anomaly_to_dict(result)
     return result
